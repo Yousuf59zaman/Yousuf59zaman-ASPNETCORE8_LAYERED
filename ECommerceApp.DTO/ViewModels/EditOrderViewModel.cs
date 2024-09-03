@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ECommerceApp.DTO.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ECommerceApp.Models;
-namespace ECommerceApp.DTO.ViewModels
+
+namespace ECommerceApp.ViewModels
 {
     public class EditOrderViewModel
     {
