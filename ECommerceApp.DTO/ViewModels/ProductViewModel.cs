@@ -1,4 +1,4 @@
-﻿namespace ECommerceApp.ViewModels
+﻿namespace ECommerceApp.DTO.ViewModels
 {
     public class ProductViewModel
     {

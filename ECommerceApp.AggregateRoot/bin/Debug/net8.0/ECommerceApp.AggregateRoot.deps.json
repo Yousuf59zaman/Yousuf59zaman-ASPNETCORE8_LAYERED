@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ECommerceApp.AggregateRoot/1.0.0": {
+        "runtime": {
+          "ECommerceApp.AggregateRoot.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ECommerceApp.AggregateRoot/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

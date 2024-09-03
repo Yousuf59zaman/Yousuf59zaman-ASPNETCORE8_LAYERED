@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ECommerceApp.DTO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7fa242c40b93493efdf596fc02c6dcd213df3bd2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ECommerceApp.DTO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ECommerceApp.DTO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceApp.ViewModels
+namespace ECommerceApp.DTO.ViewModels
 {
     public class LoginViewModel
     {

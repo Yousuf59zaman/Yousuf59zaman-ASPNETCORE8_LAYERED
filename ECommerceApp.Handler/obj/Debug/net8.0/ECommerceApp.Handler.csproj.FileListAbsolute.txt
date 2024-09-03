@@ -1,0 +1,12 @@
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.Handler.deps.json
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.Handler.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.Handler.pdb
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.GeneratedMSBuildEditorConfig.editorconfig
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.AssemblyInfoInputs.cache
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.AssemblyInfo.cs
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.csproj.CoreCompileInputs.cache
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.sourcelink.json
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\refint\ECommerceApp.Handler.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.pdb
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ref\ECommerceApp.Handler.dll
