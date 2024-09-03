@@ -77,7 +77,7 @@ namespace ECommerceApp.DTO.DBContext
 
 
 
- /*   public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+    /*public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
