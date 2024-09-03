@@ -10,3 +10,11 @@ G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\refint\ECommerceApp.Handler.dll
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.pdb
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ref\ECommerceApp.Handler.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.csproj.AssemblyReference.cache
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.AggregateRoot.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.DTO.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.Repository.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.AggregateRoot.pdb
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.DTO.pdb
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\bin\Debug\net8.0\ECommerceApp.Repository.pdb
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Handler\obj\Debug\net8.0\ECommerceApp.Handler.csproj.CopyComplete

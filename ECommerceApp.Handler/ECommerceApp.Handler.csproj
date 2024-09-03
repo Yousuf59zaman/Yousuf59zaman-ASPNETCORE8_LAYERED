@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ECommerceApp.AggregateRoot\ECommerceApp.AggregateRoot.csproj" />
+    <ProjectReference Include="..\ECommerceApp.DTO\ECommerceApp.DTO.csproj" />
+    <ProjectReference Include="..\ECommerceApp.Repository\ECommerceApp.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
