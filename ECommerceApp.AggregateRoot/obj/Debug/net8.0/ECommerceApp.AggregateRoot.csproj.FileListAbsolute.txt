@@ -10,3 +10,4 @@ G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug\net8.0\refint\ECommerceApp.AggregateRoot.dll
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug\net8.0\ECommerceApp.AggregateRoot.pdb
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug\net8.0\ref\ECommerceApp.AggregateRoot.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug\net8.0\ECommerceApp.AggregateRoot.csproj.AssemblyReference.cache

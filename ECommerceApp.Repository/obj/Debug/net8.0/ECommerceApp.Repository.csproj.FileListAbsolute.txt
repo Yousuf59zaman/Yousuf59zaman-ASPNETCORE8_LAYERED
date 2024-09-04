@@ -10,3 +10,9 @@ G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\ne
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\net8.0\refint\ECommerceApp.Repository.dll
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\net8.0\ECommerceApp.Repository.pdb
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\net8.0\ref\ECommerceApp.Repository.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\bin\Debug\net8.0\ECommerceApp.AggregateRoot.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\bin\Debug\net8.0\ECommerceApp.DTO.dll
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\bin\Debug\net8.0\ECommerceApp.AggregateRoot.pdb
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\bin\Debug\net8.0\ECommerceApp.DTO.pdb
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\net8.0\ECommerceApp.Repository.csproj.AssemblyReference.cache
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\net8.0\ECommerceApp.Repository.csproj.CopyComplete
