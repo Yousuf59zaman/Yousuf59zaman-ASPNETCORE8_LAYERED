@@ -4,8 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
 
-using System;
-using System.Collections.Generic;
 
 namespace ECommerceApp.DTO.Models
 {

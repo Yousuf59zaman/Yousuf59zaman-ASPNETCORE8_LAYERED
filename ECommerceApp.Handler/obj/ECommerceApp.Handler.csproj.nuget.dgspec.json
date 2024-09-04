@@ -39,6 +39,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -242,7 +248,14 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "G:\\Yousuf\\Layered Architecture\\ECommerceApp\\ECommerceApp.AggregateRoot\\ECommerceApp.AggregateRoot.csproj": {
+                "projectPath": "G:\\Yousuf\\Layered Architecture\\ECommerceApp\\ECommerceApp.AggregateRoot\\ECommerceApp.AggregateRoot.csproj"
+              },
+              "G:\\Yousuf\\Layered Architecture\\ECommerceApp\\ECommerceApp.DTO\\ECommerceApp.DTO.csproj": {
+                "projectPath": "G:\\Yousuf\\Layered Architecture\\ECommerceApp\\ECommerceApp.DTO\\ECommerceApp.DTO.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -254,6 +267,20 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

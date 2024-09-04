@@ -6,7 +6,9 @@ using System.IO;
 using ECommerceApp.DTO.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using ECommerceApp.DTO.Models;
-namespace ECommerceApp.DTO.DBContext
+using Microsoft.Extensions.Configuration;
+
+namespace ECommerceApp.Repository.DBContext
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -77,7 +79,7 @@ namespace ECommerceApp.DTO.DBContext
 
 
 
-    /*public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+    public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
@@ -93,5 +95,5 @@ namespace ECommerceApp.DTO.DBContext
 
             return new ApplicationDbContext(optionsBuilder.Options);
         }
-    }*/
+    }
 }
