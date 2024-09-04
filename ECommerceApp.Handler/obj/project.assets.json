@@ -1288,9 +1288,6 @@
       "ECommerceApp.AggregateRoot/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8"
-        },
         "compile": {
           "bin/placeholder/ECommerceApp.AggregateRoot.dll": {}
         },
@@ -1320,6 +1317,10 @@
         "dependencies": {
           "ECommerceApp.AggregateRoot": "1.0.0",
           "ECommerceApp.DTO": "1.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
+          "Microsoft.EntityFrameworkCore": "8.0.8",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.8",
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "8.0.1",
           "Microsoft.Extensions.Configuration.Json": "8.0.0"

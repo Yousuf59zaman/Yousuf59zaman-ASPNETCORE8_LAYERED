@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ECommerceApp.DTO.DBContext;
+using ECommerceApp.Repository.DBContext;
 using ECommerceApp.DTO.ViewModels;
 using ECommerceApp.Handler.Utilities;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Handler.InterfaceHandler;
 
-namespace ECommerceApp.Handler.Services
+namespace ECommerceApp.Handler.ServiceHandler
 {
     public class HomeService : IHomeService
     {

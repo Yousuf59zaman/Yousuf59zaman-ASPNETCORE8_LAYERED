@@ -16,3 +16,5 @@ G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\bin\Debug\ne
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\bin\Debug\net8.0\ECommerceApp.DTO.pdb
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\net8.0\ECommerceApp.Repository.csproj.AssemblyReference.cache
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\net8.0\ECommerceApp.Repository.csproj.CopyComplete
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\bin\Debug\net8.0\ECommerceApp.Repository.runtimeconfig.json
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.Repository\obj\Debug\net8.0\ECommerceApp.Repository.genruntimeconfig.cache
