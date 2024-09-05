@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ECommerceApp.Repository.DBContext;
-using ECommerceApp.DTO.Identity;
+using ECommerceApp.AggregateRoot.Identity;
 using ECommerceApp.DTO.ViewModels;
 using ECommerceApp.Handler.InterfaceHandler;
 using Microsoft.AspNetCore.Identity;

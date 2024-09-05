@@ -1,11 +1,12 @@
-﻿using ECommerceApp.DTO.Identity;
+﻿using ECommerceApp.AggregateRoot.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
 
 
-namespace ECommerceApp.DTO.Models
+
+namespace ECommerceApp.AggregateRoot.Models
 {
     public class Order
     {

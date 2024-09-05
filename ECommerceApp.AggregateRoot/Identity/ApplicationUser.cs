@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-namespace ECommerceApp.DTO.Identity
+namespace ECommerceApp.AggregateRoot.Identity
 {
 
     public class ApplicationUser : IdentityUser

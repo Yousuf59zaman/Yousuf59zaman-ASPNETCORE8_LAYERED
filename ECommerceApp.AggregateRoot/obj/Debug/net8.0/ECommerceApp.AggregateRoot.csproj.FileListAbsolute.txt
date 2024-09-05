@@ -1,6 +1,7 @@
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\bin\Debug\net8.0\ECommerceApp.AggregateRoot.deps.json
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\bin\Debug\net8.0\ECommerceApp.AggregateRoot.dll
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\bin\Debug\net8.0\ECommerceApp.AggregateRoot.pdb
+G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug\net8.0\ECommerceApp.AggregateRoot.csproj.AssemblyReference.cache
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug\net8.0\ECommerceApp.AggregateRoot.GeneratedMSBuildEditorConfig.editorconfig
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug\net8.0\ECommerceApp.AggregateRoot.AssemblyInfoInputs.cache
 G:\Yousuf\Layered Architecture\ECommerceApp\ECommerceApp.AggregateRoot\obj\Debug\net8.0\ECommerceApp.AggregateRoot.AssemblyInfo.cs

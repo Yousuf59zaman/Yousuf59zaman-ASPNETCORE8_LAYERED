@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ECommerceApp.DTO.Models
+namespace ECommerceApp.AggregateRoot.Models
 {
     public class Product
     {

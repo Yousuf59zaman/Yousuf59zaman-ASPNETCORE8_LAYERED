@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using ECommerceApp.DTO.ViewModels;
-using ECommerceApp.DTO.Identity;
+using ECommerceApp.AggregateRoot.Identity;
 using Microsoft.AspNetCore.Identity;
 
 

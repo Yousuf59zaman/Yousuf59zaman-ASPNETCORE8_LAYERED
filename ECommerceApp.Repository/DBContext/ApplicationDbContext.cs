@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
-using ECommerceApp.DTO.Identity;
+using ECommerceApp.AggregateRoot.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using ECommerceApp.DTO.Models;
+using ECommerceApp.AggregateRoot.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace ECommerceApp.Repository.DBContext

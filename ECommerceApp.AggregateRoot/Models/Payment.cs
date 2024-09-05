@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace ECommerceApp.DTO.Models
+namespace ECommerceApp.AggregateRoot.Models
 {
     public enum PaymentStatus
     {

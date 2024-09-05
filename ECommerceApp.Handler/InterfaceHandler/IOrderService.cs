@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ECommerceApp.DTO.ViewModels;
-using ECommerceApp.DTO.Models;
+using ECommerceApp.AggregateRoot.Models;
 
 
 namespace ECommerceApp.Handler.InterfaceHandler

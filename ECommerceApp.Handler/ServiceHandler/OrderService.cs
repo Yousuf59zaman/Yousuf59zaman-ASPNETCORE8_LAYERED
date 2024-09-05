@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ECommerceApp.DTO.Models;
+using ECommerceApp.AggregateRoot.Models;
 using ECommerceApp.DTO.ViewModels;
 using ECommerceApp.Handler.InterfaceHandler;
 using ECommerceApp.Repository.DBContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ECommerceApp.DTO.Identity;
+using ECommerceApp.AggregateRoot.Identity;
 
 namespace ECommerceApp.Handler.ServiceHandler
 {

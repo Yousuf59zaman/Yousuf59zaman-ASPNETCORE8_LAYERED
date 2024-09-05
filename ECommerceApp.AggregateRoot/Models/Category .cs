@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace ECommerceApp.DTO.Models
+namespace ECommerceApp.AggregateRoot.Models
 {
     public class Category
     {
