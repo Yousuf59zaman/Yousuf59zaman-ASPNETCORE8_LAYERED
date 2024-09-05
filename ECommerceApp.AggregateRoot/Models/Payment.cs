@@ -1,16 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ECommerceApp.Shared;
 
 
 
 namespace ECommerceApp.AggregateRoot.Models
 {
-    public enum PaymentStatus
-    {
-        Pending,
-        Successful
-    }
+   
 
     public class Payment
     {

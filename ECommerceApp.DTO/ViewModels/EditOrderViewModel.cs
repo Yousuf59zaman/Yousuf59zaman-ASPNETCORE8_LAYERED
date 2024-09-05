@@ -1,4 +1,4 @@
-﻿using ECommerceApp.AggregateRoot.Models;
+﻿using ECommerceApp.Shared;
 using System.ComponentModel.DataAnnotations;
 
 namespace ECommerceApp.DTO.ViewModels

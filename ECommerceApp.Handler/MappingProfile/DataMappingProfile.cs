@@ -14,8 +14,10 @@ namespace ECommerceApp.Handler.MappingProfile
     {
         public DataMappingProfile()
         {
-            // Mapping between Order entity and EditOrderViewModel
-            CreateMap<Order, EditOrderViewModel>().ReverseMap();
+            // Example: Mapping between Order and EditOrderViewModel
+            CreateMap<Order, EditOrderViewModel>()
+                .ForMember(dest => dest.PaymentStatus, opt => opt.MapFrom(src => src.Payment.Status))
+                .ReverseMap();
 
             // Mapping between Product entity and ProductViewModel
             CreateMap<Product, ProductViewModel>().ReverseMap();

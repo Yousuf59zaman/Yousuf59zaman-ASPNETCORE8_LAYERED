@@ -5,13 +5,15 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceApp", "ECommerceApp\ECommerceApp.csproj", "{C1C3CCC3-D883-4021-9B68-8BF117D95482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceApp.DTO", "ECommerceApp.DTO\ECommerceApp.DTO.csproj", "{9FB2945A-2566-42A5-936D-DA4CA6230369}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceApp.DTO", "ECommerceApp.DTO\ECommerceApp.DTO.csproj", "{9FB2945A-2566-42A5-936D-DA4CA6230369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceApp.Handler", "ECommerceApp.Handler\ECommerceApp.Handler.csproj", "{5D0B71A0-99A6-4C66-B070-A05FB91FB82E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceApp.Handler", "ECommerceApp.Handler\ECommerceApp.Handler.csproj", "{5D0B71A0-99A6-4C66-B070-A05FB91FB82E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceApp.AggregateRoot", "ECommerceApp.AggregateRoot\ECommerceApp.AggregateRoot.csproj", "{1E22B69A-7BF1-4E11-88F7-E327C6ED2E04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceApp.AggregateRoot", "ECommerceApp.AggregateRoot\ECommerceApp.AggregateRoot.csproj", "{1E22B69A-7BF1-4E11-88F7-E327C6ED2E04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceApp.Repository", "ECommerceApp.Repository\ECommerceApp.Repository.csproj", "{646DD90E-C5D5-4047-A2AC-14A77405445A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceApp.Repository", "ECommerceApp.Repository\ECommerceApp.Repository.csproj", "{646DD90E-C5D5-4047-A2AC-14A77405445A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceApp.Shared", "ECommerceApp.Shared\ECommerceApp.Shared.csproj", "{D10C5DE1-C60D-44C8-AD97-2556AB575404}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{646DD90E-C5D5-4047-A2AC-14A77405445A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{646DD90E-C5D5-4047-A2AC-14A77405445A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{646DD90E-C5D5-4047-A2AC-14A77405445A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D10C5DE1-C60D-44C8-AD97-2556AB575404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D10C5DE1-C60D-44C8-AD97-2556AB575404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D10C5DE1-C60D-44C8-AD97-2556AB575404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D10C5DE1-C60D-44C8-AD97-2556AB575404}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
