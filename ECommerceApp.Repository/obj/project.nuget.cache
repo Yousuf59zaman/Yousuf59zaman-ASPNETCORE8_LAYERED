@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "WXI1LBAgeDiFdQ3hMUcQN560Ewe4g6R0KYugET5vPu8xXKV8AM1i1y2I3OzdMscow5iOPtgzSBQpT7S6ZxERnQ==",
+  "dgSpecHash": "955CmOU0Tk1Rkfz02cRNCFOclFhNnBZbkSDnipOG8yWjlb0X9ZKbyNMNRPnZbfM8XNWA64vMKCV1ydi66h1k4A==",
   "success": true,
   "projectFilePath": "G:\\Yousuf\\Layered Architecture\\ECommerceApp\\ECommerceApp.Repository\\ECommerceApp.Repository.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\zaman\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\zaman\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\zaman\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\zaman\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
