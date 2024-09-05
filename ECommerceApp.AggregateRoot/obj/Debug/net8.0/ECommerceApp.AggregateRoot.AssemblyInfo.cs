@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ECommerceApp.AggregateRoot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16d5618dd56af59822953bd3179e024d06a48de5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ECommerceApp.AggregateRoot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ECommerceApp.AggregateRoot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
