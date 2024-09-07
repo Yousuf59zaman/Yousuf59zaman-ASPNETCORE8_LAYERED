@@ -26,10 +26,12 @@ namespace ECommerceApp.Repository.Repository
         public async Task<Order> GetOrderByIdAsync(int orderId)
         {
             return await _context.Orders
-                .Include(o => o.OrderDetails)
-                .ThenInclude(od => od.Product)
+                .Include(o => o.Payment)  // Include Payment details
+                .Include(o => o.OrderDetails)  // Include OrderDetails if necessary
+                .ThenInclude(od => od.Product)  // Optionally include Product details if needed
                 .FirstOrDefaultAsync(o => o.OrderID == orderId);
         }
+
 
         public async Task<List<Order>> GetUserOrderHistoryAsync(string userId)
         {
@@ -50,9 +52,18 @@ namespace ECommerceApp.Repository.Repository
 
         public async Task UpdateOrderAsync(Order order)
         {
-            _context.Orders.Update(order);
-            await _context.SaveChangesAsync();
+            // Ensure the Order and Payment are being tracked and updated
+            _context.Orders.Update(order);  // This tracks changes to the Order entity
+            if (order.Payment != null)
+            {
+                _context.Payments.Update(order.Payment);  // Explicitly update Payment entity if it exists
+            }
+
+            await _context.SaveChangesAsync();  // Persist the changes to the database
         }
+
+
+
 
         public async Task DeleteOrderAsync(Order order)
         {

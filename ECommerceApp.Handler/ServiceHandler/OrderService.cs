@@ -133,20 +133,39 @@ namespace ECommerceApp.Handler.ServiceHandler
 
         public async Task<Order> UpdateOrderAsync(EditOrderViewModel model)
         {
-            var order = await _orderRepository.GetOrderByIdAsync(model.OrderID);
+            var order = await _orderRepository.GetOrderByIdAsync(model.OrderID); // Fetch the order from the database
             if (order != null)
             {
+                // Update the order status
                 order.OrderStatus = model.OrderStatus;
+
+                // Update the payment status if a payment exists
                 if (order.Payment != null)
                 {
-                    order.Payment.Status = model.PaymentStatus;  // Update the payment status
+                    order.Payment.Status = model.PaymentStatus;  // Update payment status here
+                }
+                else
+                {
+                    // If no payment exists, we create a new payment entity
+                    order.Payment = new Payment
+                    {
+                        OrderID = order.OrderID,
+                        PaymentAmount = order.TotalAmount,
+                        Status = model.PaymentStatus,  // Use the PaymentStatus from the form
+                        PaymentDate = DateTime.Now,  // Set the payment date to now
+                        Method = "COD"  // Assuming the default method is COD, adjust as needed
+                    };
                 }
 
-                await _orderRepository.UpdateOrderAsync(order);  // Save changes
+                // Save changes
+                await _orderRepository.UpdateOrderAsync(order);  // Use repository to update the order and payment
             }
 
             return order;
         }
+
+
+
 
 
         public async Task DeleteOrderAsync(int orderId)
