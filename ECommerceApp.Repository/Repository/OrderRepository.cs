@@ -34,11 +34,12 @@ namespace ECommerceApp.Repository.Repository
         public async Task<List<Order>> GetUserOrderHistoryAsync(string userId)
         {
             return await _context.Orders
-                .Include(o => o.Payment)
-                .Include(o => o.OrderDetails)
-                .ThenInclude(od => od.Product)
-                .Where(o => o.CustomerID == userId)
-                .ToListAsync();
+     .Include(o => o.Payment)  // This ensures the Payment data is loaded
+     .Include(o => o.OrderDetails)
+     .ThenInclude(od => od.Product)
+     .Where(o => o.CustomerID == userId)
+     .ToListAsync();
+
         }
 
         public async Task AddOrderAsync(Order order)

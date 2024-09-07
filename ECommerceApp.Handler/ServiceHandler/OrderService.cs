@@ -101,6 +101,19 @@ namespace ECommerceApp.Handler.ServiceHandler
             // Use the repository to add the order to the database
             await _orderRepository.AddOrderAsync(order);
 
+
+            // Add payment record after order creation
+            var payment = new Payment
+            {
+                OrderID = order.OrderID,
+                PaymentAmount = totalAmount,
+                Method = paymentMethod,
+                Status = PaymentStatus.Pending  // Set initial payment status
+            };
+
+            _context.Payments.Add(payment);  // Add payment to the database
+            await _context.SaveChangesAsync();
+
             // Continue with payment logic and saving the order
             // (This can still remain in the service layer, as planned.)
 
@@ -126,14 +139,15 @@ namespace ECommerceApp.Handler.ServiceHandler
                 order.OrderStatus = model.OrderStatus;
                 if (order.Payment != null)
                 {
-                    order.Payment.Status = model.PaymentStatus;
+                    order.Payment.Status = model.PaymentStatus;  // Update the payment status
                 }
 
-                await _orderRepository.UpdateOrderAsync(order); // Use repository for updates
+                await _orderRepository.UpdateOrderAsync(order);  // Save changes
             }
 
             return order;
         }
+
 
         public async Task DeleteOrderAsync(int orderId)
         {
