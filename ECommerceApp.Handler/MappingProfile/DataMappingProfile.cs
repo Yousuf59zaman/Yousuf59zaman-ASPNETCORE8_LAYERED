@@ -20,7 +20,9 @@ namespace ECommerceApp.Handler.MappingProfile
                 .ReverseMap();
 
             // Mapping between Product entity and ProductViewModel
-            CreateMap<Product, ProductViewModel>().ReverseMap();
+            CreateMap<Product, ProductViewModel>()
+            .ForMember(dest => dest.ProductImage, opt => opt.MapFrom(src => $"/images/{src.ProductImage}")) // Assuming images are in /images directory
+            .ReverseMap();
 
             // Mapping between ApplicationUser and RegisterViewModel
             CreateMap<ApplicationUser, RegisterViewModel>().ReverseMap()

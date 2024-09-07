@@ -14,6 +14,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Handler.InterfaceHandler;
+using AutoMapper;
+
 
 namespace ECommerceApp.Handler.ServiceHandler
 {
@@ -21,44 +23,38 @@ namespace ECommerceApp.Handler.ServiceHandler
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IMapper _mapper; // Inject AutoMapper
 
-        public HomeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+        public HomeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _mapper = mapper; // Assign AutoMapper
         }
 
         public async Task<List<ProductViewModel>> GetProductsAsync()
         {
-            return await _context.Products
-                .Include(p => p.Category)  // Include Category to get CategoryName
-                .Select(p => new ProductViewModel
-                {
-                    ProductId = p.ProductId,
-                    ProductName = p.ProductName,
-                    ProductDesc = p.ProductDesc,
-                    ProductUnitPrice = p.ProductUnitPrice,
-                    ProductImage = $"/images/{p.ProductImage}",  // Assume the image file name is stored in the ProductImage field
-                    CategoryName = p.Category.CategoryName
-                })
+            var products = await _context.Products
+                .Include(p => p.Category) // Include Category to get CategoryName
                 .ToListAsync();
+
+            // Use AutoMapper to map List<Product> to List<ProductViewModel>
+            return _mapper.Map<List<ProductViewModel>>(products);
         }
 
         public async Task<ProductViewModel> GetProductDetailsAsync(Guid id)
         {
-            return await _context.Products
+            var product = await _context.Products
                 .Include(p => p.Category)
-                .Where(p => p.ProductId == id)
-                .Select(p => new ProductViewModel
-                {
-                    ProductId = p.ProductId,
-                    ProductName = p.ProductName,
-                    ProductDesc = p.ProductDesc,
-                    ProductUnitPrice = p.ProductUnitPrice,
-                    ProductImage = $"/images/{p.ProductImage}",
-                    CategoryName = p.Category.CategoryName
-                })
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(p => p.ProductId == id);
+
+            if (product == null)
+            {
+                return null;
+            }
+
+            // Use AutoMapper to map Product to ProductViewModel
+            return _mapper.Map<ProductViewModel>(product);
         }
 
         public int GetCartCount()
@@ -121,20 +117,22 @@ namespace ECommerceApp.Handler.ServiceHandler
 
         public List<ProductViewModel> GetProductsInCart(Dictionary<Guid, int> cart)
         {
-            return _context.Products
+            var products = _context.Products
                 .Where(p => cart.Keys.Contains(p.ProductId))
-                .Select(p => new ProductViewModel
-                {
-                    ProductId = p.ProductId,
-                    ProductName = p.ProductName,
-                    ProductDesc = p.ProductDesc,
-                    ProductUnitPrice = p.ProductUnitPrice,
-                    ProductImage = $"/images/{p.ProductImage}",
-                    CategoryName = p.Category.CategoryName,
-                    Quantity = cart[p.ProductId]  // Get the quantity from the session cart
-                })
+                .Include(p => p.Category) // Include Category for mapping
                 .ToList();
+
+            var productViewModels = _mapper.Map<List<ProductViewModel>>(products);
+
+            // Map quantities from the cart
+            foreach (var productViewModel in productViewModels)
+            {
+                productViewModel.Quantity = cart[productViewModel.ProductId];
+            }
+
+            return productViewModels;
         }
     }
 }
+
 
