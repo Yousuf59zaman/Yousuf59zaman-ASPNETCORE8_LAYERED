@@ -14,7 +14,7 @@ namespace ECommerceApp.Handler.MappingProfile
     {
         public DataMappingProfile()
         {
-          /*  // Example: Mapping between Order and EditOrderViewModel
+            /*// Example: Mapping between Order and EditOrderViewModel
             CreateMap<Order, EditOrderViewModel>()
                 .ForMember(dest => dest.PaymentStatus, opt => opt.MapFrom(src => src.Payment.Status))
                 .ReverseMap();
