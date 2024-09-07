@@ -22,6 +22,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ECommerceApp.Repository.IRepository;
 
+using AutoMapper;
+using ECommerceApp.AggregateRoot.Models;
+using ECommerceApp.DTO.ViewModels;
+using ECommerceApp.Handler.InterfaceHandler;
+using ECommerceApp.Repository.DBContext;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace ECommerceApp.Handler.ServiceHandler
 {
     public class OrderService : IOrderService
@@ -29,28 +41,28 @@ namespace ECommerceApp.Handler.ServiceHandler
         private readonly IOrderRepository _orderRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
-        public OrderService(IOrderRepository orderRepository, UserManager<ApplicationUser> userManager, ApplicationDbContext context)
+        private readonly IMapper _mapper;
+
+        public OrderService(IOrderRepository orderRepository, UserManager<ApplicationUser> userManager, ApplicationDbContext context, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _userManager = userManager;
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<List<ProductViewModel>> GetCartProductsAsync(Dictionary<Guid, int> cart)
         {
-            return await _context.Products
+            var products = await _context.Products
                 .Where(p => cart.Keys.Contains(p.ProductId))
-                .Select(p => new ProductViewModel
-                {
-                    ProductId = p.ProductId,
-                    ProductName = p.ProductName,
-                    ProductDesc = p.ProductDesc,
-                    ProductUnitPrice = p.ProductUnitPrice,
-                    ProductImage = $"/images/{p.ProductImage}",
-                    CategoryName = p.Category.CategoryName,
-                    Quantity = cart[p.ProductId]
-                })
                 .ToListAsync();
+
+            var productViewModels = _mapper.Map<List<ProductViewModel>>(products);
+
+            // Update quantities from the cart
+            productViewModels.ForEach(p => p.Quantity = cart[p.ProductId]);
+
+            return productViewModels;
         }
 
         public async Task<decimal> GetCartTotalAmountAsync(List<ProductViewModel> products)
@@ -66,29 +78,22 @@ namespace ECommerceApp.Handler.ServiceHandler
 
         public async Task<Order> PlaceOrderAsync(Dictionary<Guid, int> cart, string userId, string shippingAddress, string paymentMethod)
         {
-            // Initialize the totalAmount and orderDetails list
-            decimal totalAmount = 0;
-            var orderDetails = new List<OrderDetails>();
+            // Fetch products from the cart
+            var products = await _context.Products.Where(p => cart.Keys.Contains(p.ProductId)).ToListAsync();
 
-            // Calculate the total amount and populate order details
-            foreach (var item in cart)
+            // Calculate totalAmount and map to OrderDetails
+            var orderDetails = products.Select(p => new OrderDetails
             {
-                var product = await _context.Products.FindAsync(item.Key);
-                if (product != null)
-                {
-                    totalAmount += product.ProductUnitPrice * item.Value;
+                ProductID = p.ProductId,
+                Quantity = cart[p.ProductId],
+                UnitPrice = p.ProductUnitPrice,
+                Total = p.ProductUnitPrice * cart[p.ProductId]
+            }).ToList();
 
-                    orderDetails.Add(new OrderDetails
-                    {
-                        ProductID = product.ProductId,
-                        Quantity = item.Value,
-                        UnitPrice = product.ProductUnitPrice,
-                        Total = product.ProductUnitPrice * item.Value
-                    });
-                }
-            }
+            // Calculate total amount
+            var totalAmount = orderDetails.Sum(od => od.Total);
 
-            // Create a new Order object
+            // Create new Order entity
             var order = new Order
             {
                 CustomerID = userId,
@@ -98,10 +103,10 @@ namespace ECommerceApp.Handler.ServiceHandler
                 OrderDetails = orderDetails
             };
 
-            // Determine Payment Status based on the payment method
+            // Set payment status based on payment method
             var paymentStatus = paymentMethod == "Credit Card" ? PaymentStatus.Successful : PaymentStatus.Pending;
 
-            // Create a new Payment object
+            // Create Payment entity
             var payment = new Payment
             {
                 PaymentAmount = totalAmount,
@@ -110,12 +115,9 @@ namespace ECommerceApp.Handler.ServiceHandler
                 PaymentDate = DateTime.Now
             };
 
-            // Delegate to the repository to handle order and payment creation
+            // Use repository to handle order creation
             return await _orderRepository.PlaceOrderAsync(order, payment);
         }
-
-
-
 
         public async Task<Order> GetOrderByIdAsync(int orderId)
         {
@@ -129,52 +131,28 @@ namespace ECommerceApp.Handler.ServiceHandler
 
         public async Task<Order> UpdateOrderAsync(EditOrderViewModel model)
         {
-            var order = await _orderRepository.GetOrderByIdAsync(model.OrderID); // Fetch the order from the database
+            var order = await _orderRepository.GetOrderByIdAsync(model.OrderID);
             if (order != null)
             {
-                // Update the order status
-                order.OrderStatus = model.OrderStatus;
+                // Use AutoMapper to update Order entity
+                _mapper.Map(model, order);
 
-                // Update the payment status if a payment exists
-                if (order.Payment != null)
-                {
-                    order.Payment.Status = model.PaymentStatus;  // Update payment status here
-                }
-                else
-                {
-                    // If no payment exists, we create a new payment entity
-                    order.Payment = new Payment
-                    {
-                        OrderID = order.OrderID,
-                        PaymentAmount = order.TotalAmount,
-                        Status = model.PaymentStatus,  // Use the PaymentStatus from the form
-                        PaymentDate = DateTime.Now,  // Set the payment date to now
-                        Method = "COD"  // Assuming the default method is COD, adjust as needed
-                    };
-                }
-
-                // Save changes
-                await _orderRepository.UpdateOrderAsync(order);  // Use repository to update the order and payment
+                // Save updated order
+                await _orderRepository.UpdateOrderAsync(order);
             }
-
             return order;
         }
-
-
-
-
 
         public async Task DeleteOrderAsync(int orderId)
         {
             var order = await _orderRepository.GetOrderByIdAsync(orderId);
             if (order != null)
             {
-                await _orderRepository.DeleteOrderAsync(order); // Use repository for deletion
+                await _orderRepository.DeleteOrderAsync(order);
             }
         }
-
-       
     }
 }
+
 
 
