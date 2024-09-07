@@ -70,7 +70,7 @@ namespace ECommerceApp.Handler.ServiceHandler
             decimal totalAmount = 0;
             var orderDetails = new List<OrderDetails>();
 
-            // Iterate through the cart and calculate total amount and order details
+            // Calculate the total amount and populate order details
             foreach (var item in cart)
             {
                 var product = await _context.Products.FindAsync(item.Key);
@@ -88,36 +88,32 @@ namespace ECommerceApp.Handler.ServiceHandler
                 }
             }
 
-            // Create a new Order object with the calculated totalAmount and orderDetails
+            // Create a new Order object
             var order = new Order
             {
                 CustomerID = userId,
-                OrderStatus = "Pending",  // Order starts in Pending status
+                OrderStatus = "Pending",
                 ShippingAddress = shippingAddress,
                 TotalAmount = totalAmount,
                 OrderDetails = orderDetails
             };
 
-            // Use the repository to add the order to the database
-            await _orderRepository.AddOrderAsync(order);
-
-            // Determine Payment Status based on the selected payment method
+            // Determine Payment Status based on the payment method
             var paymentStatus = paymentMethod == "Credit Card" ? PaymentStatus.Successful : PaymentStatus.Pending;
 
-            // Add payment record after order creation
+            // Create a new Payment object
             var payment = new Payment
             {
-                OrderID = order.OrderID,
                 PaymentAmount = totalAmount,
                 Method = paymentMethod,
-                Status = paymentStatus  // Set payment status dynamically based on the method
+                Status = paymentStatus,
+                PaymentDate = DateTime.Now
             };
 
-            _context.Payments.Add(payment);  // Add payment to the database
-            await _context.SaveChangesAsync();
-
-            return order;
+            // Delegate to the repository to handle order and payment creation
+            return await _orderRepository.PlaceOrderAsync(order, payment);
         }
+
 
 
 

@@ -9,6 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using ECommerceApp.AggregateRoot.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace ECommerceApp.Repository.IRepository
 {
     public interface IOrderRepository
@@ -18,6 +23,11 @@ namespace ECommerceApp.Repository.IRepository
         Task AddOrderAsync(Order order);
         Task UpdateOrderAsync(Order order);
         Task DeleteOrderAsync(Order order);
+
+        // New methods for adding payment and placing an order
+        Task AddPaymentAsync(Payment payment);
+        Task<Order> PlaceOrderAsync(Order order, Payment payment);
     }
 }
+
 
