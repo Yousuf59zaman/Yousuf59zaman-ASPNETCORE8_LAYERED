@@ -92,7 +92,7 @@ namespace ECommerceApp.Handler.ServiceHandler
             var order = new Order
             {
                 CustomerID = userId,
-                OrderStatus = "Pending",
+                OrderStatus = "Pending",  // Order starts in Pending status
                 ShippingAddress = shippingAddress,
                 TotalAmount = totalAmount,
                 OrderDetails = orderDetails
@@ -101,6 +101,8 @@ namespace ECommerceApp.Handler.ServiceHandler
             // Use the repository to add the order to the database
             await _orderRepository.AddOrderAsync(order);
 
+            // Determine Payment Status based on the selected payment method
+            var paymentStatus = paymentMethod == "Credit Card" ? PaymentStatus.Successful : PaymentStatus.Pending;
 
             // Add payment record after order creation
             var payment = new Payment
@@ -108,17 +110,15 @@ namespace ECommerceApp.Handler.ServiceHandler
                 OrderID = order.OrderID,
                 PaymentAmount = totalAmount,
                 Method = paymentMethod,
-                Status = PaymentStatus.Pending  // Set initial payment status
+                Status = paymentStatus  // Set payment status dynamically based on the method
             };
 
             _context.Payments.Add(payment);  // Add payment to the database
             await _context.SaveChangesAsync();
 
-            // Continue with payment logic and saving the order
-            // (This can still remain in the service layer, as planned.)
-
             return order;
         }
+
 
 
         public async Task<Order> GetOrderByIdAsync(int orderId)
