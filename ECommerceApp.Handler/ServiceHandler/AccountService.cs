@@ -9,14 +9,9 @@ using ECommerceApp.DTO.ViewModels;
 using ECommerceApp.Handler.InterfaceHandler;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-
-
-using ECommerceApp.AggregateRoot.Identity;
-using ECommerceApp.DTO.ViewModels;
-using ECommerceApp.Handler.InterfaceHandler;
 using ECommerceApp.Repository.IRepository;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using AutoMapper;
 using System.Threading.Tasks;
 
 namespace ECommerceApp.Handler.ServiceHandler
@@ -25,11 +20,13 @@ namespace ECommerceApp.Handler.ServiceHandler
     {
         private readonly IAccountRepository _accountRepository;
         private readonly ILogger<AccountService> _logger;
+        private readonly IMapper _mapper; // Inject AutoMapper
 
-        public AccountService(IAccountRepository accountRepository, ILogger<AccountService> logger)
+        public AccountService(IAccountRepository accountRepository, ILogger<AccountService> logger, IMapper mapper)
         {
             _accountRepository = accountRepository;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public async Task<SignInResult> LoginAsync(LoginViewModel model)
@@ -79,16 +76,8 @@ namespace ECommerceApp.Handler.ServiceHandler
                 return IdentityResult.Failed(new IdentityError { Description = "A user with this email address already exists." });
             }
 
-            var user = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email,
-                PhoneNumber = model.Phone,
-                Age = model.Age,
-                Gender = model.Gender,
-                Address = model.Address,
-                Name = model.Name
-            };
+            // Use AutoMapper to map RegisterViewModel to ApplicationUser
+            var user = _mapper.Map<ApplicationUser>(model);
 
             var result = await _accountRepository.CreateUserAsync(user, model.Password);
 
@@ -113,4 +102,5 @@ namespace ECommerceApp.Handler.ServiceHandler
         }
     }
 }
+
 
