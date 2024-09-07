@@ -11,18 +11,24 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 
+using ECommerceApp.AggregateRoot.Identity;
+using ECommerceApp.DTO.ViewModels;
+using ECommerceApp.Handler.InterfaceHandler;
+using ECommerceApp.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+
 namespace ECommerceApp.Handler.ServiceHandler
 {
     public class AccountService : IAccountService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IAccountRepository _accountRepository;
         private readonly ILogger<AccountService> _logger;
 
-        public AccountService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<AccountService> logger)
+        public AccountService(IAccountRepository accountRepository, ILogger<AccountService> logger)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _accountRepository = accountRepository;
             _logger = logger;
         }
 
@@ -36,7 +42,7 @@ namespace ECommerceApp.Handler.ServiceHandler
 
             _logger.LogInformation("Login attempt for email: {Email}", model.Email);
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+            var result = await _accountRepository.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
 
             if (result.Succeeded)
             {
@@ -52,7 +58,7 @@ namespace ECommerceApp.Handler.ServiceHandler
 
         public async Task LogoutAsync()
         {
-            await _signInManager.SignOutAsync();
+            await _accountRepository.SignOutAsync();
             _logger.LogInformation("User logged out.");
         }
 
@@ -66,7 +72,7 @@ namespace ECommerceApp.Handler.ServiceHandler
 
             _logger.LogInformation("Registering new user with email: {Email}", model.Email);
 
-            var existingUser = await _userManager.FindByEmailAsync(model.Email);
+            var existingUser = await _accountRepository.FindByEmailAsync(model.Email);
             if (existingUser != null)
             {
                 _logger.LogWarning("Registration attempt with existing email: {Email}", model.Email);
@@ -84,7 +90,7 @@ namespace ECommerceApp.Handler.ServiceHandler
                 Name = model.Name
             };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+            var result = await _accountRepository.CreateUserAsync(user, model.Password);
 
             if (result.Succeeded)
             {
@@ -103,7 +109,7 @@ namespace ECommerceApp.Handler.ServiceHandler
 
         public async Task<ApplicationUser> FindByEmailAsync(string email)
         {
-            return await _userManager.FindByEmailAsync(email);
+            return await _accountRepository.FindByEmailAsync(email);
         }
     }
 }

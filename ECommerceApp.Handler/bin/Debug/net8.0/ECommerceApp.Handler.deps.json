@@ -1012,6 +1012,7 @@
         "dependencies": {
           "ECommerceApp.AggregateRoot": "1.0.0",
           "ECommerceApp.DTO": "1.0.0",
+          "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.8",
