@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using ECommerceApp.Repository.IRepository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ECommerceApp.DTO.ViewModels;
+using ECommerceApp.Shared;
 
 
 namespace ECommerceApp.Repository.Repository
@@ -73,26 +75,76 @@ namespace ECommerceApp.Repository.Repository
             await _context.SaveChangesAsync();
         }
 
-        // New method to handle placing an order, including adding the payment
-        public async Task<Order> PlaceOrderAsync(Order order, Payment payment)
+        public async Task<List<ProductViewModel>> GetCartProductsAsync(Dictionary<Guid, int> cart)
         {
+            var products = await _context.Products
+                .Where(p => cart.Keys.Contains(p.ProductId))
+                .ToListAsync();
+
+            return products.Select(p => new ProductViewModel
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                ProductUnitPrice = p.ProductUnitPrice,
+                Quantity = cart[p.ProductId]
+            }).ToList();
+        }
+
+        public async Task<Order> PlaceOrderAsync(Dictionary<Guid, int> cart, string userId, string shippingAddress, string paymentMethod)
+        {
+            // Fetch products from the cart
+            var products = await _context.Products
+                .Where(p => cart.Keys.Contains(p.ProductId))
+                .ToListAsync();
+
+            // Calculate totalAmount and map to OrderDetails
+            var orderDetails = products.Select(p => new OrderDetails
+            {
+                ProductID = p.ProductId,
+                Quantity = cart[p.ProductId],
+                UnitPrice = p.ProductUnitPrice,
+                Total = p.ProductUnitPrice * cart[p.ProductId]
+            }).ToList();
+
+            // Calculate total amount
+            var totalAmount = orderDetails.Sum(od => od.Total);
+
+            // Create new Order entity
+            var order = new Order
+            {
+                CustomerID = userId,
+                OrderStatus = "Pending",
+                ShippingAddress = shippingAddress,
+                TotalAmount = totalAmount,
+                OrderDetails = orderDetails
+            };
+
+            // Set payment status based on payment method
+            var paymentStatus = paymentMethod == "Credit Card" ? PaymentStatus.Successful : PaymentStatus.Pending;
+
+            // Create Payment entity
+            var payment = new Payment
+            {
+                PaymentAmount = totalAmount,
+                Method = paymentMethod,
+                Status = paymentStatus,
+                PaymentDate = DateTime.Now
+            };
+
+            // Use transaction to place order and add payment
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {
                 try
                 {
-                    // Add the order to the database
+                    // Add order and payment
                     await AddOrderAsync(order);
-
-                    // Add the payment to the database
-                    payment.OrderID = order.OrderID; // Ensure the payment is linked to the order
+                    payment.OrderID = order.OrderID;
                     await AddPaymentAsync(payment);
 
-                    // Commit transaction
                     await transaction.CommitAsync();
                 }
                 catch
                 {
-                    // Rollback in case of failure
                     await transaction.RollbackAsync();
                     throw;
                 }
@@ -100,6 +152,14 @@ namespace ECommerceApp.Repository.Repository
 
             return order;
         }
+
+        public async Task<string> GetShippingAddressAsync(string userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            return user?.Address;
+        }
+
+
     }
 }
 

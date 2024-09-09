@@ -16,18 +16,26 @@ using System.Threading.Tasks;
 using ECommerceApp.Handler.InterfaceHandler;
 using AutoMapper;
 using ECommerceApp.Repository.Repository;
+using ECommerceApp.Repository.IRepository;
 
 
 namespace ECommerceApp.Handler.ServiceHandler
 {
-    public class HomeService
+    public class HomeService : IHomeService
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
-        private readonly HomeRepository _homeRepository; // Inject repository
+        private readonly IHomeRepository _homeRepository; // Inject repository
 
         // Constructor to inject services
+        public HomeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper, IHomeRepository homeRepository)
+        {
+            _context = context;
+            _httpContextAccessor = httpContextAccessor;
+            _mapper = mapper;
+            _homeRepository = homeRepository; // Use interface instead of concrete class
+        }
         public HomeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper, HomeRepository homeRepository)
         {
             _context = context;

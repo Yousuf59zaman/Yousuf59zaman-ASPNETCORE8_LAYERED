@@ -13,6 +13,7 @@ using ECommerceApp.AggregateRoot.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ECommerceApp.DTO.ViewModels;
 
 namespace ECommerceApp.Repository.IRepository
 {
@@ -24,9 +25,10 @@ namespace ECommerceApp.Repository.IRepository
         Task UpdateOrderAsync(Order order);
         Task DeleteOrderAsync(Order order);
 
-        // New methods for adding payment and placing an order
-        Task AddPaymentAsync(Payment payment);
-        Task<Order> PlaceOrderAsync(Order order, Payment payment);
+        // New methods for handling cart and orders
+        Task<List<ProductViewModel>> GetCartProductsAsync(Dictionary<Guid, int> cart);
+        Task<Order> PlaceOrderAsync(Dictionary<Guid, int> cart, string userId, string shippingAddress, string paymentMethod);
+        Task<string> GetShippingAddressAsync(string userId);
     }
 }
 

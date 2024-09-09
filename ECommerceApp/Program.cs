@@ -46,8 +46,6 @@ builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IHomeRepository, HomeRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>(); // Register repository here
-
-builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 // Add AutoMapper
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
