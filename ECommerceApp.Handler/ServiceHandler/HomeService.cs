@@ -15,38 +15,38 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Handler.InterfaceHandler;
 using AutoMapper;
+using ECommerceApp.Repository.Repository;
 
 
 namespace ECommerceApp.Handler.ServiceHandler
 {
-    public class HomeService : IHomeService
+    public class HomeService
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IMapper _mapper; // Inject AutoMapper
+        private readonly IMapper _mapper;
+        private readonly HomeRepository _homeRepository; // Inject repository
 
-        public HomeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper)
+        // Constructor to inject services
+        public HomeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper, HomeRepository homeRepository)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
-            _mapper = mapper; // Assign AutoMapper
+            _mapper = mapper;
+            _homeRepository = homeRepository; // Assign repository
         }
 
+       
         public async Task<List<ProductViewModel>> GetProductsAsync()
         {
-            var products = await _context.Products
-                .Include(p => p.Category) // Include Category to get CategoryName
-                .ToListAsync();
-
+            var products = await _homeRepository.GetAllProductsAsync(); // Use repository method
             // Use AutoMapper to map List<Product> to List<ProductViewModel>
             return _mapper.Map<List<ProductViewModel>>(products);
         }
 
         public async Task<ProductViewModel> GetProductDetailsAsync(Guid id)
         {
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .FirstOrDefaultAsync(p => p.ProductId == id);
+            var product = await _homeRepository.GetProductByIdAsync(id); // Use repository method
 
             if (product == null)
             {
