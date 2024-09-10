@@ -19,8 +19,10 @@ namespace ECommerceApp.Handler.InterfaceHandler
             void AddToCart(Guid productId, int quantity);
             void UpdateCartQuantity(Guid productId, int quantity);
             void RemoveFromCart(Guid productId);
-            List<ProductViewModel> GetProductsInCart(Dictionary<Guid, int> cart);
+        Task<List<ProductViewModel>> GetProductsInCartAsync(Dictionary<Guid, int> cart);
+
+
         }
-    
+
 
 }

@@ -39,12 +39,13 @@ namespace ECommerceApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Cart()
+        public async Task<IActionResult> Cart()
         {
-            var cart = _homeService.GetCart();
-            var productsInCart = _homeService.GetProductsInCart(cart);
-            return View(productsInCart);
+            var cart = _homeService.GetCart(); // Synchronous call to get the cart
+            var productsInCart = await _homeService.GetProductsInCartAsync(cart); // Asynchronous call to get products in the cart
+            return View(productsInCart); // Return the view with the list of products in the cart
         }
+
 
         public IActionResult RemoveFromCart(Guid id)
         {

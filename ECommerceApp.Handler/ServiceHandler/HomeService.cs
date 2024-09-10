@@ -89,12 +89,12 @@ namespace ECommerceApp.Handler.ServiceHandler
         }
 
         // Fetch products that are in the cart and map them
-        public List<ProductViewModel> GetProductsInCart(Dictionary<Guid, int> cart)
+        public async Task<List<ProductViewModel>> GetProductsInCartAsync(Dictionary<Guid, int> cart)
         {
-            var products = _context.Products
+            var products = await _context.Products
                 .Where(p => cart.Keys.Contains(p.ProductId))
                 .Include(p => p.Category) // Include Category for mapping
-                .ToList();
+                .ToListAsync(); // Use async version of ToList()
 
             var productViewModels = _mapper.Map<List<ProductViewModel>>(products);
 
@@ -106,6 +106,7 @@ namespace ECommerceApp.Handler.ServiceHandler
 
             return productViewModels;
         }
+
     }
 }
 
