@@ -9,6 +9,7 @@ using ECommerceApp.DTO.ViewModels;
 using ECommerceApp.Handler.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using ECommerceApp.AggregateRoot.CartAggregateRoot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,27 +25,19 @@ namespace ECommerceApp.Handler.ServiceHandler
     public class HomeService : IHomeService
     {
         private readonly ApplicationDbContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         private readonly IHomeRepository _homeRepository; // Inject repository
+        private readonly CartAggregateRoot _cartAggregateRoot; // Add this
 
         // Constructor to inject services
-        public HomeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper, IHomeRepository homeRepository)
+        public HomeService(ApplicationDbContext context, IMapper mapper, IHomeRepository homeRepository, CartAggregateRoot cartAggregateRoot)
         {
             _context = context;
-            _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
             _homeRepository = homeRepository; // Use interface instead of concrete class
-        }
-        public HomeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper, HomeRepository homeRepository)
-        {
-            _context = context;
-            _httpContextAccessor = httpContextAccessor;
-            _mapper = mapper;
-            _homeRepository = homeRepository; // Assign repository
+            _cartAggregateRoot = cartAggregateRoot; // Inject CartAggregateRoot
         }
 
-       
         public async Task<List<ProductViewModel>> GetProductsAsync()
         {
             var products = await _homeRepository.GetAllProductsAsync(); // Use repository method
@@ -65,64 +58,37 @@ namespace ECommerceApp.Handler.ServiceHandler
             return _mapper.Map<ProductViewModel>(product);
         }
 
+        // Refactored method to use CartAggregateRoot
         public int GetCartCount()
         {
-            var cart = _httpContextAccessor.HttpContext.Session.Get<Dictionary<Guid, int>>("Cart");
-            return cart?.Count ?? 0;
+            return _cartAggregateRoot.GetCartCount(); // Use CartAggregateRoot method
         }
 
+        // Refactored method to use CartAggregateRoot
         public Dictionary<Guid, int> GetCart()
         {
-            return _httpContextAccessor.HttpContext.Session.Get<Dictionary<Guid, int>>("Cart") ?? new Dictionary<Guid, int>();
+            return _cartAggregateRoot.GetCart(); // Use CartAggregateRoot method
         }
 
+        // Refactored method to use CartAggregateRoot
         public void AddToCart(Guid productId, int quantity)
         {
-            var cart = GetCart();
-
-            if (cart.ContainsKey(productId))
-            {
-                cart[productId] += quantity;  // Update quantity if the product is already in the cart
-            }
-            else
-            {
-                cart.Add(productId, quantity);  // Add new product with the specified quantity
-            }
-
-            _httpContextAccessor.HttpContext.Session.Set("Cart", cart);
+            _cartAggregateRoot.AddToCart(productId, quantity); // Use CartAggregateRoot method
         }
 
+        // Refactored method to use CartAggregateRoot
         public void UpdateCartQuantity(Guid productId, int quantity)
         {
-            var cart = GetCart();
-
-            if (cart.ContainsKey(productId))
-            {
-                if (quantity > 0)
-                {
-                    cart[productId] = quantity;  // Update quantity in the session
-                }
-                else
-                {
-                    cart.Remove(productId);  // If the quantity is zero or less, remove the item
-                }
-            }
-
-            _httpContextAccessor.HttpContext.Session.Set("Cart", cart);
+            _cartAggregateRoot.UpdateCartQuantity(productId, quantity); // Use CartAggregateRoot method
         }
 
+        // Refactored method to use CartAggregateRoot
         public void RemoveFromCart(Guid productId)
         {
-            var cart = GetCart();
-
-            if (cart.ContainsKey(productId))
-            {
-                cart.Remove(productId);  // Remove the product from the cart
-            }
-
-            _httpContextAccessor.HttpContext.Session.Set("Cart", cart);
+            _cartAggregateRoot.RemoveFromCart(productId); // Use CartAggregateRoot method
         }
 
+        // Fetch products that are in the cart and map them
         public List<ProductViewModel> GetProductsInCart(Dictionary<Guid, int> cart)
         {
             var products = _context.Products
@@ -142,5 +108,4 @@ namespace ECommerceApp.Handler.ServiceHandler
         }
     }
 }
-
 

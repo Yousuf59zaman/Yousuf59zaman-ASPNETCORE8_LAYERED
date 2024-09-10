@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QBC9R76Tf49XGMCpfcByBcpXiDr5NhVUEfL88+Jksj+djsGeIFd5dpZyGpIDnQg+o5YOWJFYyR/N3jRlYbZ1pQ==",
+  "dgSpecHash": "hE8Eus358L4Ufw7NCnuiMKjGEwpXY+Wz3N3C/6AmOfsH5lWHgdF7pkPAEapgVxjDxHd+3vjWETo/N6gEHzc5mw==",
   "success": true,
   "projectFilePath": "G:\\Yousuf\\Layered Architecture\\ECommerceApp\\ECommerceApp.Repository\\ECommerceApp.Repository.csproj",
   "expectedPackageFiles": [
@@ -77,6 +77,7 @@
     "C:\\Users\\zaman\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\zaman\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\zaman\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\zaman\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\zaman\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\zaman\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\zaman\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
