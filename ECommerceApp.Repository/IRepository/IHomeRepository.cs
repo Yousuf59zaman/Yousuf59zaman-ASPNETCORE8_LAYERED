@@ -15,6 +15,10 @@ namespace ECommerceApp.Repository.IRepository
     {
         Task<List<Product>> GetAllProductsAsync();
         Task<Product> GetProductByIdAsync(Guid productId);
+
+        // In IHomeRepository.cs
+        Task<List<Product>> GetProductsInCartAsync(Dictionary<Guid, int> cart);
+
     }
 }
 

@@ -39,6 +39,15 @@ namespace ECommerceApp.Repository.Repository
                 .Include(p => p.Category) // Include category details
                 .FirstOrDefaultAsync(p => p.ProductId == productId);
         }
+
+        public async Task<List<Product>> GetProductsInCartAsync(Dictionary<Guid, int> cart)
+        {
+            return await _context.Products
+                .Where(p => cart.Keys.Contains(p.ProductId))
+                .Include(p => p.Category) // Include Category for mapping
+                .ToListAsync(); // Use async version of ToListAsync
+        }
+
     }
 }
 
